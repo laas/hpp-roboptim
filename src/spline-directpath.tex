@@ -1,0 +1,79 @@
+\documentclass {article}
+
+\usepackage {amsmath}
+\usepackage {amsfonts} % pour les lettres maths creuses \mathbb
+\newcommand\real{\mathbb{R}}
+\newcommand\PP{\textbf{P}}
+\newcommand\B{\textbf{B}}
+
+\begin{document}
+\section* {Implemetation of method \texttt{SplineDirectPath::bestFit}.}
+Cubic spline is defined by:
+$$
+B(t) = \sum_{i=0}^{m-1} b_{i,3} (t) P_i,
+$$
+where
+\begin{itemize}
+\item $P_i\in\real^n$, $i=0\cdots m-1$ are control points,
+\item $b_{i,3}\in C^3 ([0,T],\real)$, $i=0\cdots m-1$ are basis functions.
+\end{itemize}
+If we denote
+\begin{itemize}
+\item $\PP = (P_0^T \cdots P_{m-1}^T)^T\in \real^{nm}$,
+\item $\B = \left(\begin{array}{ccc}
+b_{0,3} I_n & \cdots & b_{m-1,3}I_n
+\end{array}\right)\in\real^{n\times (nm)},$
+\end{itemize}
+then
+$$
+B(t) = \B(t) \PP
+$$
+And if we denote
+\begin{itemize}
+\item $P = (P_0 \cdots P_{m-1})\in\real^{n\times m}$,
+\item $b = \left(\begin{array}{ccc}
+b_{0,3}  & \cdots & b_{m-1,3}
+\end{array}\right)^T\in\real^{m},$
+\end{itemize}
+then
+$$
+B(t) = P b(t)
+$$
+\subsection* {Fit an input path}
+
+Given an input path $\Gamma\in C^0([0,T], \real^n)$, We want to compute the parameter vector of the cubic B-spline $B$ satisfying:
+$$
+\forall i, 0\leq i\leq m-1,\ B (t_i) = \Gamma (t_i)
+$$
+with $t_i = \frac{i}{m-1}T$. These equations can be gathered into the following expression:
+$$
+P
+\left(\begin{array}{ccc}
+b (t_0) & \cdots & b(t_{m-1}) \\
+\end{array}\right)
+=
+\left(\begin{array}{ccc}
+\Gamma (t_0) & \cdots & \Gamma (t_{m-1}) \\
+\end{array}\right)
+$$
+and the control points of the spline can be computed as:
+$$
+P
+=
+\left(\begin{array}{ccc}
+\Gamma (t_0) & \cdots & \Gamma (t_{m-1}) \\
+\end{array}\right)
+\left(\begin{array}{ccc}
+b (t_0) & \cdots & b(t_{m-1}) \\
+\end{array}\right)^{-1}
+$$
+\subsection*{Computation of matrix $\left(\begin{array}{ccc}b (t_0) & \cdots & b(t_{m-1}) \\\end{array}\right)$}
+
+Function \texttt{CubicBSpline::variationConfigWrtParam} computes matrix $\B(t)$
+for a given time $t$.
+
+Therefore, coefficient of row $i$ and column $j$ of matrix $\left(\begin{array}{ccc}b (t_0) & \cdots & b(t_{m-1}) \\\end{array}\right)$ is given by:
+$$
+  \texttt{Bitj (i,j)} = \B (t_j) (0,n\ i)
+$$
+\end{document}
