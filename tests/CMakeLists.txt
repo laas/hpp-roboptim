@@ -2,7 +2,7 @@
 INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
 
 # Add src to link directories.
-LINK_DIRECTORIES(../src)
+LINK_DIRECTORIES(${CMAKE_BINARY_DIR}/src)
 
 # Make Boost.Test generates the main function in test cases.
 ADD_DEFINITIONS(-DBOOST_TEST_DYN_LINK -DBOOST_TEST_MAIN)
