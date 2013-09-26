@@ -21,7 +21,7 @@
 #include <KineoWorks2/kwsDevice.h>
 #include <KineoModel/kppSMLinearComponent.h>
 
-#include <kwsIO/kwsioConfig.h>
+#include <hpp/kwsio/configuration.hh>
 
 #include <roboptim/trajectory/cubic-b-spline.hh>
 #include <roboptim/core/function.hh>
