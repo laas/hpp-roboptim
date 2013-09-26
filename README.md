@@ -1,0 +1,5 @@
+hpp-roboptim
+------------
+
+This package makes the link between the humanoid path planner (HPP)
+packages and the RobOptim optimization packages.
