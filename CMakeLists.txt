@@ -23,7 +23,6 @@ INCLUDE(cmake/cpack.cmake)
 
 SET(CXX_DISABLE_WERROR ON)
 SET(PROJECT_NAME hpp-roboptim)
-SET(PROJECT_VERSION 0.1)
 SET(PROJECT_DESCRIPTION
   "Bind hpp robot modelling and roboptim optimization framework.")
 SET(PROJECT_URL "https://github.com/laas/hpp-roboptim")
