@@ -71,6 +71,7 @@ namespace hpp {
       {
 	mask_ = mask;
 	recomputeIndices ();
+	return KD_OK;
       }
 
       virtual CkwsAbstractPathShPtr clone () const;
