@@ -25,12 +25,14 @@
 # include <KineoWorks2/kwsDirectPath.h>
 # include <roboptim/trajectory/fwd.hh>
 
-KIT_PREDEF_CLASS (CkwsPath)
+# include <hpp/util/kitelab.hh>
+
+HPP_KIT_PREDEF_CLASS (CkwsPath);
 class CjrlGikStateConstraint;
 
 namespace hpp {
   namespace roboptim {
-    KIT_PREDEF_CLASS (SplineDirectPath)
+    HPP_KIT_PREDEF_CLASS (SplineDirectPath);
     using ::roboptim::CubicBSpline;
 
     class SplineDirectPath : public CkwsDirectPath
