@@ -27,6 +27,7 @@
 #include <roboptim/core/function.hh>
 
 #include <hpp/util/debug.hh>
+#include <hpp/util/assertion.hh>
 
 #include <jrl/mal/matrixabstractlayer.hh>
 #include <gikTask/jrlGikStateConstraint.h>
@@ -110,17 +111,17 @@ namespace hpp {
 
     void SplineDirectPath::checkDirectPath ()
     {
-      const CkwsConfig& startConfig (privateStart ());
-      const CkwsConfig& endConfig (privateEnd ());
-      CkwsConfigShPtr config_0 = this->configAtParam (0.);
-      CkwsConfigShPtr config_1 = this->configAtParam (1.);
+      hppDebugStatement (const CkwsConfig& startConfig (privateStart ());
+			 const CkwsConfig& endConfig (privateEnd ());
+			 CkwsConfigShPtr config_0 = this->configAtParam (0.);
+			 CkwsConfigShPtr config_1 = this->configAtParam (1.));
 
       hppDout (info, "Initial configuration: " << *(config_0));
       hppDout (info, "Config at start      : " << startConfig);
       hppDout (info, "Final configuration: " << *(config_1));
       hppDout (info, "Config at end      : " << endConfig);
-      assert (config_0->isEquivalent(startConfig));
-      assert (config_1->isEquivalent(endConfig));
+      HPP_ASSERT (config_0->isEquivalent(startConfig));
+      HPP_ASSERT (config_1->isEquivalent(endConfig));
       hppDout (info, "assert passed.");
 
     }
